@@ -16,7 +16,3 @@ RUN apk add --no-cache \
         docker-php-ext-install gettext && \
         docker-php-ext-install zip && \
         docker-php-ext-install json
-
-WORKDIR /var/www/html
-ENTRYPOINT docker-php-entrypoint
-CMD php-fpm
