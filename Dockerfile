@@ -11,6 +11,7 @@ RUN apk add --no-cache \
         icu-dev \
         gettext-dev \
         libxslt-dev  && \
+        docker-php-ext-configure gd --with-jpeg && \
         docker-php-ext-install pdo_mysql && \
         docker-php-ext-install mysqli && \
         docker-php-ext-install gd && \
