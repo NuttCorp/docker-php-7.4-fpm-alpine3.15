@@ -10,14 +10,16 @@ RUN apk add --no-cache \
         libxml2-dev \
         icu-dev \
         gettext-dev \
-        libxslt-dev  && \
-        docker-php-ext-configure gd --with-jpeg && \
+        libxslt-dev && \
+        docker-php-ext-configure gd --with-freetype --with-jpeg && \
+        docker-php-ext-install -j "$(nproc)" gd && \
         docker-php-ext-install pdo_mysql && \
         docker-php-ext-install mysqli && \
-        docker-php-ext-install gd && \
         docker-php-ext-install gettext && \
         docker-php-ext-install zip && \
         docker-php-ext-install json && \
         docker-php-ext-install xsl
 
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
+CMD sh -c "crond f && php-fpm"
